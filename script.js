@@ -2,7 +2,7 @@
 // Khi chạy thử (Local), dùng: 'http://localhost:3000'
 // Khi deploy (Bước 5), chúng ta sẽ thay đổi địa chỉ này
 //const API_URL = 'http://localhost:3000/chat'; 
-const API_URL = '/api/chat'; // Dòng này mới
+const API_URL = '/api/chat'
 // Lấy các đối tượng HTML
 const chatForm = document.getElementById('chat-form');
 const promptInput = document.getElementById('prompt-input');
