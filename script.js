@@ -1,8 +1,6 @@
-// Địa chỉ Backend của chúng ta
-// Khi chạy thử (Local), dùng: 'http://localhost:3000'
-// Khi deploy (Bước 5), chúng ta sẽ thay đổi địa chỉ này
-//const API_URL = 'http://localhost:3000/chat'; 
-const API_URL = '/api/chat'
+// Địa chỉ Backend (Đã đúng)
+const API_URL = '/api/chat';
+
 // Lấy các đối tượng HTML
 const chatForm = document.getElementById('chat-form');
 const promptInput = document.getElementById('prompt-input');
@@ -11,10 +9,15 @@ const chatContainer = document.getElementById('chat-container');
 // Hàm thêm tin nhắn vào giao diện
 function addMessage(sender, text) {
     const messageDiv = document.createElement('div');
+
+    // === PHẦN SỬA LỖI LÀ ĐÂY ===
+    // Nó sẽ tách 'bot loading' thành 'bot' và 'loading'
     messageDiv.classList.add('message', ...sender.split(' '));
+    // ===========================
+
     messageDiv.innerText = text; // Dùng innerText để tránh lỗi XSS
     chatContainer.appendChild(messageDiv);
-    
+
     // Tự động cuộn xuống tin nhắn mới nhất
     chatContainer.scrollTop = chatContainer.scrollHeight;
     return messageDiv; // Trả về div tin nhắn để cập nhật sau (nếu cần)
@@ -32,7 +35,7 @@ chatForm.addEventListener('submit', async (e) => {
 
     // Xóa nội dung đã nhập và thêm tin nhắn "Đang tải..."
     promptInput.value = '';
-    const loadingMessage = addMessage('bot loading', 'Gemini đang nghĩ...');
+    const loadingMessage = addMessage('bot loading', 'Gemini đang nghĩ...'); // Gửi 'bot loading'
 
     try {
         // Gọi đến Backend (server.js)
@@ -52,7 +55,7 @@ chatForm.addEventListener('submit', async (e) => {
 
         // Cập nhật tin nhắn "Đang tải..." bằng câu trả lời thật
         loadingMessage.innerText = data.answer;
-        loadingMessage.classList.remove('loading');
+        loadingMessage.classList.remove('loading'); // Xóa class 'loading'
 
     } catch (error) {
         console.error('Lỗi khi gọi API:', error);
