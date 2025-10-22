@@ -11,7 +11,7 @@ const chatContainer = document.getElementById('chat-container');
 // Hàm thêm tin nhắn vào giao diện
 function addMessage(sender, text) {
     const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', sender);
+    messageDiv.classList.add('message', ...sender.split(' '));
     messageDiv.innerText = text; // Dùng innerText để tránh lỗi XSS
     chatContainer.appendChild(messageDiv);
     
