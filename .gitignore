@@ -1,0 +1,5 @@
+# File chứa biến môi trường
+.env
+
+# Thư mục thư viện
+node_modules/
